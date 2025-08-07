@@ -16,39 +16,19 @@ namespace FirstActionRPG.scenes
 
 		private void PlayerMovement(double delta)
 		{
-			var velocity = Velocity;
+
+			var input = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+			Velocity = input * Speed;
 			
-			if (Input.IsActionPressed("ui_right"))
+			if (input != Vector2.Zero)
 			{
-				_currentDirection = Direction.Right;
-				velocity.X = Speed;
-				velocity.Y = 0;
+				if (input.X > 0) _currentDirection = Direction.Right;
+				else if (input.X < 0) _currentDirection = Direction.Left;
+				else if (input.Y > 0) _currentDirection = Direction.Down;
+				else if (input.Y < 0) _currentDirection = Direction.Up;
 			}
-			else if (Input.IsActionPressed("ui_left"))
-			{
-				_currentDirection = Direction.Left;
-				velocity.X = -Speed;
-				velocity.Y = 0;
-			}
-			else if (Input.IsActionPressed("ui_up"))
-			{
-				_currentDirection = Direction.Up;
-				velocity.X = 0;
-				velocity.Y = -Speed;
-			}
-			else if (Input.IsActionPressed("ui_down"))
-			{
-				_currentDirection = Direction.Down;
-				velocity.X = 0;
-				velocity.Y = Speed;
-			}
-			else
-			{
-				velocity.X = 0;
-				velocity.Y = 0;
-			}
-			
-			Velocity = velocity;
+    
+			// Call the rest of your movement logic.
 			PlayAnimation();
 			MoveAndSlide();
 		}
