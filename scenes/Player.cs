@@ -5,17 +5,17 @@ namespace FirstActionRPG.scenes
 {
 	public partial class Player : CharacterBody2D
 	{
-		public const float Speed = 100.0f;
+		private const float Speed = 100.0f;
 
 		public override void _PhysicsProcess(double delta)
 		{
 			PlayerMovement(delta);
 		}
 
-		public void PlayerMovement(double delta)
+		private void PlayerMovement(double delta)
 		{
-			Vector2 velocity = Velocity;
-
+			var velocity = Velocity;
+			
 			if (Input.IsActionPressed("ui_right"))
 			{
 				velocity.X = Speed;
@@ -38,7 +38,6 @@ namespace FirstActionRPG.scenes
 			}
 
 			Velocity = velocity;
-
 			MoveAndSlide();
 		}
 	}
