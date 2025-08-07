@@ -5,12 +5,12 @@ public partial class Player : CharacterBody2D
 {
 	public const float Speed = 100.0f;
 
-	public override void _PhysicsProcess(float delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		PlayerMovement(delta);
 	}
 
-	public void PlayerMovement(float delta)
+	public void PlayerMovement(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -27,12 +27,12 @@ public partial class Player : CharacterBody2D
 		else if (Input.IsActionPressed("ui_up"))
 		{
 			velocity.X = 0;
-			velocity.Y = Speed;
+			velocity.Y = -Speed;
 		}
 		else if (Input.IsActionPressed("ui_down"))
 		{
 			velocity.X = 0;
-			velocity.Y = -Speed;
+			velocity.Y = Speed;
 		}
 
 		Velocity = velocity;
